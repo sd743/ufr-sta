@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="admin-page">
+    <header class="admin-navbar"> 
+        <h2>Administration</h2>  
+        <div class="admin-user">
+            <i class="fa fa-user-circle"></i>
+            Administrateur
+        </div>
+    </header>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <a class="active"><i class="fa fa-home"></i> Dashboard</a>
+            <a href="gerer_formations.html"><i class="fa fa-graduation-cap"></i> Formations</a>
+            <a href="gerer_actualites.html"><i class="fa fa-newspaper"></i> Actualités</a>
+            <a href="gerer_activites.html"><i class="fa fa-calendar"></i> Activités</a>
+            <a href="gerer_photos.html"><i class="fa fa-image"></i> Galerie</a>
+            <button class="admin-logout">
+                <a href="login.html">
+                <i class="fa fa-right-from-bracket"></i>
+                Déconnexion
+                </a>
+            </button>
+        
+        </aside>
+        <main class="admin-content">
+            <h1 class="admin-title">
+                Tableau de bord
+            </h1>
+            
+            <p>
+            Bienvenue dans votre espace administrateur.
+            </p>
+    
+            <div class="admin-cards">
+                <div class="admin-card">
+                <i class="fa fa-graduation-cap"></i>
+                <h3>Formations</h3>
+                <strong>5</strong>
+                <a href="gerer_formations.html">Gerer →</a>
+                </div>
+    
+                <div class="admin-card">
+                <i class="fa fa-newspaper"></i>
+                <h3>Actualités</h3>
+                <strong>10</strong>
+                <a href="gerer_actualites.html">Gerer →</a>
+                </div>
+    
+                <div class="admin-card"></div>
+                <i class="fa fa-calendar"></i>
+                <h3>Activités</h3>
+                <strong>8</strong>
+                <a href="gerer_activites.html">Gerer →</a>
+                </div>
+                
+                <div class="admin-card">
+                <i class="fa-solid fa-images"></i>
+                <h3>Photos</h3>
+                <strong>8</strong>
+                <a href="gerer_photos.html">Gerer →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
