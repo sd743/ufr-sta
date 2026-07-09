@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block titre %}Accueil{% endblock %}
+{% block main %}
+
+    <section class="banner">
+        <h1>Gallerie Photos</h1>
+        <p>Accueil/ Gallerie</p>
+    </section>
+    <section class="galerie">
+        <h2>Nos Albums Photos</h2> 
+        <div class="categories">
+            <button>Tous</button>
+            <button>Évènements</button>
+            <button>Conférences</button>
+            <button>Ateliers</button>
+            <button>Competitions</button>
+            <button>Sorties</button>
+        </div>
+        
+        <div class="cards">
+        
+            <div class="card" data-category="evenement">
+                <h3>Journée d'Excellence 2026</h3>
+                <p> • 12 Mai 2026</p>
+                <p>Une journée dédiée à la valorisation de la recherche scientifique et de l’innovation au sein de l’UFR STA.Cette rencontre a également permis de promouvoir l’excellence académique et l’esprit de recherche chez les étudiants.</p>
+                <img src="../static/images/journee1.jpeg">
+                <img src="../static/images/journee2.jpeg"> 
+            </div>
+        
+            <div class="card" data-category="conference">
+                <h3>Conférence scientifique sur la modélisation des systèmes littoraux et estuariens</h3>
+                <p>• 9 Avril 2025</p> 
+                <p>Animée par Dr Isabelle Brenon à l’UAM, en partenariat avec l’UFR STA, cette conférence a porté sur la modélisation numérique des estuaires, lagunes et zones côtières.</p>
+                <img src="../static/images/conference1.jpeg">
+                <img src="../static/images/conference2.jpeg">
+            </div>
+        
+            <div class="card" data-category="conference">
+                <h3>Conference sur les Mathematiques pour la societe</h3>
+                <p>• Avril 2026</p>
+                <p>Organisée dans le cadre du cycle des grandes conférences, cette rencontre avec le professeur Abdou SENE a mis en lumière le rôle essentiel des mathématiques dans le développement de la societe.</p>
+                <img src="../static/images/conference3.jpeg">
+                <img src="../static/images/conference5.jpeg">
+            </div>
+        
+            <div class="card" data-category="evenement">
+                <h3>Journee des gens de la mer</h3>
+                <p>• Mars 2026</p>
+                <p>Organisée dans le cadre des activités de la filière Sciences de la Mer et du Littoral (SML), cette journée a permis de sensibiliser les étudiants aux enjeux maritimes, environnementaux et économiques liés au monde marin.</p>
+                <img src="../static/images/journee3.jpeg">
+                <img src="../static/images/journée9.jpeg">
+            </div>
+            
+            <div class="card" data-category="sortie">
+                <h3>Sortie pédagogique a la lagune de Somone</h3>
+                <p>• 15 Decembre 2024</p>
+                <p>Cette sortie pédagogique a offert aux étudiants une immersion pratique sur le terrain afin d’observer les écosystèmes côtiers et les réalités environnementales de la lagune de Somone</p>
+                <img src="../static/images/sortie1.jpeg">
+                <img src="../static/images/sortie2.jpeg">
+            </div>
+        
+            <div class="card" data-category="evenement">
+                <h3>Inauguration de la salle d'informatique</h3>
+                <p>• 12 Mai 2026</p>
+                <p>L’Unité de Formation et de Recherche STA a inauguré une nouvelle salle informatique moderne équipée d’ordinateurs et d’outils numériques destinés à renforcer les capacités de formation des étudiants.</p>
+                <img src="../static/images/inauguration1.jpeg">
+                <img src="../static/images/inauguration2.jpeg">
+            </div>
+            
+            <div class="card" data-category="atelier"> 
+                <h3>Journée d'information</h3>
+                <p>• 30 Juin 2026</p>
+                <p>Cette journée d’information  et de formation a permis de présenter aux professeurs les programmes académiques, les opportunités de formation ainsi que les perspectives offertes par l’UFR STA.</p> 
+                <img src="../static/images/journee5.jpeg">
+                <img src="../static/images/journee6.jpeg">
+            </div>
+        
+            <div class="card" data-category="evenement"> 
+                <h3>Amphi de rentrée</h3>
+                <p>• 13 Janvier 2025</p>
+                <p>Cette rencontre a été l’occasion d’accueillir les nouveaux étudiants, de présenter les objectifs pédagogiques de l’année et de rappeler les valeurs d’excellence, de discipline et d’engagement.</p>
+                <img src="../static/images/amphi1.jpeg">
+                <img src="../static/images/amphi2.jpeg">
+            </div>
+        
+            <div class="card" data-category="competition">
+                <h3>Tournoi inter-promo</h3>
+                <p>• 19 Avril 2026</p>
+                <p>Le tournoi inter-promo a réuni les étudiants de différentes promotions autour d’activités sportives favorisant l’esprit d’équipe, la cohésion et la convivialité. Cet événement a permis de renforcer les liens entre étudiants.</p> 
+                <img src="../static/images/competition1.jpeg">
+                <img src="../static/images/competition2.jpeg">
+            </div>
+            
+            <div class="card" data-category="competition"> 
+                <h3>Match contre l'UFR TECNA</h3>
+                <p>• 19 Avril 2026</p>
+                <p>Dans une ambiance conviviale et compétitive, les étudiants de l’UFR STA ont affronté ceux de l’UFR TECNA lors d’un match sportif inter-UFR.</p>
+                <img src="../static/images/competition3.jpeg">
+                <img src="../static/images/competition4.jpeg">
+            </div>
+
+            <div class="card" data-category="sortie">
+                <h3>Sortie pédagogique au Sine Saloum</h3>
+                <p>• 15 Juin 2025</p>
+                <p>Dans le cadre de la formation en Sciences de la Mer et du Littoral, les étudiants de l'UFR STA ont effectué une sortie pédagogique dans le delta du Sine Saloum.</p>
+                <img src="../static/images/sortie5.jpeg">
+                <img src="../static/images/sortie6.jpeg">
+            </div>
+    
+            <div class="categories">
+                <button data-filter="all">Tous</button>          
+                <button data-filter="evenement">Évènements</button>
+                <button data-filter="conference">Conférences</button>      
+                <button data-filter="atelier">Ateliers</button>
+                <button data-filter="competition">Competitions</button>
+                <button data-filter="sortie">Sorties</button>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+{% endblock %} 
