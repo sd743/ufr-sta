@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Page de l'UFR STA{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static' , filename='css/style.css')}}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+</head>
+<body>
+    <header>
+        <div class="topbar">
+            <h3>UFR STA - UAM</h3>
+            <P>contact@sta.uam.edu.sn | +221 33 123 45 67</P>
+        </div>
+    </header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{url_for('static' , filename='images/logo-sta.jpg')}}" alt="image du logo">
+                <h2>UFR STA</h2>
+            </div>
+            <div class="menu-toggle" id="menu"></div>
+            <div>
+                <a href="{{ url_for('accueil') }}">Accueil</a>
+                <a href="{{url_for('departements')}}">departements</a>
+                <a href="{{ url_for('formations') }}">Formations</a>
+                <a href="{{ url_for('actualites') }}">Actualités</a>
+                <a href="{{ url_for('activites') }}">Activités</a>
+                <a href="{{ url_for('galerie') }}">Galerie</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('admin') }}">Admin</a>
+                <a href="{{ url_for('enseignants') }}">Enseignants</a>
+
+            </div>
+        </nav>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    
+           
+        
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>UFR Sciences et Technologies Avancées (STA)</h3>
+                <p>
+                    L'UFR STA a pour mission de former des cadres compétents et
+                    innovants, ouverts aux enjeux scientifiques et sociétaux.
+                </p>
+        </div>
+    
+            <div class="footer-col">
+                <h3>Adresse</h3>
+                <p>Pôle Urbain de Diamniadio – Dakar, Sénégal</p>
+                <p>+221 33 844 10 00</p>
+                <p>contact@ufrsta.sn</p>
+                <p>08h00 - 17h00</p>
+            </div>
+            <div class="footer-col">
+                <h3>Accès Rapides</h3>
+                <ul>
+                    <li><a href="#">Présentation de l'UFR</a></li>
+                    <li><a href="#">Gestion des Départements</a></li>
+                    <li><a href="#">Présentation détaillée des formations</a></li>
+                    <li><a href="#">Actualités</a></li>
+                    <li><a href="#">Journal des Activités de l'UFR</a></li>
+                    <li><a href="#">Galerie Photos</a></li>
+                    <li><a href="#">Enseignants</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Administration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Liens Utiles</h3>
+                <ul>
+                    <li><a href="#">Directeur</a></li>
+                    <li><a href="#">Directeur adjoint</a></li>
+                    <li><a href="#">Chef des services administratifs</a></li>
+                    <li><a href="#">Chef du département MIM</a></li>
+                    <li><a href="#">Chef du département SMU</a></li>
+                    <li><a href="#">Université Amadou Mahtar MBOW</a></li>
+                </ul>
+            </div>
+    
+        </div>
+        <hr>
+        <div class="copyright">
+            © Copyright UFR STA 2026. Tous droits réservés.
+        </div>
+    </footer>
+</body>    
+</html>
+        
+            
+
+        

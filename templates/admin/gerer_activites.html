@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Activités</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-page">
+
+<header class="admin-navbar">
+    <h2>Administration</h2>
+    <div class="admin-user">Administrateur</div>
+</header>
+
+<div class="admin-layout">
+
+    <!-- MENU -->
+    <aside class="admin-sidebar">
+        <a href="{{ url_for('admin') }}"><i class="fa fa-home"></i> Dashboard</a>
+        <a href="{{ url_for('gerer_formations') }}">Formations</a>
+        <a href="{{ url_for('gerer_actualites') }}">Actualités</a>
+        <a href="{{ url_for('gerer_activites') }}" class="active">Activités</a>
+        <a href="{{ url_for('gerer_photos') }}">Galerie</a>
+        <a href="{{ url_for('login') }}">Déconnexion</a>
+
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="admin-content">
+        <h1 class="admin-title">Gestion des Activités</h1>
+
+        <section class="admin-table-box">
+            <button class="admin-btn" onclick="ouvrirAjout()">+ Ajouter une activité</button>
+
+            <h2>Liste des activités</h2>
+
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for activite in activites %}
+                <tr>
+                    <td>{{ activite.titre }}</td>
+                    <td>{{ activite.date }}</td>
+                    <td>{{ activite.description }}</td>
+                    <td>
+                        <button class="edit"
+                            onclick="ouvrirModification('{{ activite.id }}','{{ activite.titre }}','{{ activite.date }}','{{ activite.description }}')">
+                            Modifier
+                        </button>
+
+                        <form method="POST" action="{{ url_for('supprimer_activite', id=activite.id) }}" style="display:inline;">
+                            <button class="delete">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+</div>
+
+<!-- POPUP AJOUT -->
+<div id="modalAjout" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerAjout()">×</span>
+        <h2>Ajouter une activité</h2>
+        <form method="POST" action="{{ url_for('ajouter_activite') }}">
+            <input class="admin-input" name="titre" placeholder="Titre" required>
+            <input class="admin-input" name="date" type="date" required>
+            <input class="admin-input" name="lieu" placeholder="Lieu" required>
+            <textarea class="admin-input" name="description" placeholder="Description"></textarea>
+            <input class="admin-input" name="organisateur" placeholder="Organisateur" required>
+            <button class="admin-btn">Ajouter</button>
+        </form>
+    </div>
+</div>
+
+<!-- POPUP MODIFICATION -->
+<div id="modalModification" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerModification()">×</span>
+        <h2>Modifier une activité</h2>
+        <form id="formModification" method="POST">
+            <input id="modTitre" class="admin-input" name="titre">
+            <input id="modDate" class="admin-input" name="date" type="date">
+            <textarea id="modDescription" class="admin-input" name="description"></textarea>
+            <button class="admin-btn">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function ouvrirAjout() {
+    document.getElementById("modalAjout").style.display="flex";
+}
+function fermerAjout() {
+    document.getElementById("modalAjout").style.display="none";
+}
+function ouvrirModification(id,titre,date,description) {
+    document.getElementById("modalModification").style.display="flex";
+    document.getElementById("modTitre").value=titre;
+    document.getElementById("modDate").value=date;
+    document.getElementById("modDescription").value=description;
+    document.getElementById("formModification").action = "/admin/activites/modifier/" + id;
+}
+function fermerModification() {
+    document.getElementById("modalModification").style.display="none";
+}
+</script>
+
+</body>
+</html>

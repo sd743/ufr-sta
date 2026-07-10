@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Actualités</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-page">
+
+<header class="admin-navbar">
+    <h2>Administration</h2>
+    <div class="admin-user">Administrateur</div>
+</header>
+
+<div class="admin-layout">
+
+    <!-- MENU -->
+    <aside class="admin-sidebar">
+        <a href="{{ url_for('admin') }}"><i class="fa fa-home"></i> Dashboard</a>
+        <a href="{{ url_for('gerer_actualites') }}" class="active">Actualités</a>
+        <a href="{{ url_for('gerer_activites') }}">Activités</a>
+        <a href="{{ url_for('gerer_formations') }}">Formations</a>
+        <a href="{{ url_for('gerer_photos') }}">Galerie</a>
+        <a href="{{ url_for('login') }}">Déconnexion</a>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="admin-content">
+        <h1 class="admin-title">Gestion des actualités</h1>
+
+        <section class="admin-table-box">
+            <button class="admin-btn" onclick="ouvrirAjout()">+ Ajouter une actualité</button>
+
+            <h2>Liste des actualités</h2>
+
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for actualite in actualites %}
+                <tr>
+                    <td>{{ actualite.titre }}</td>
+                    <td>{{ actualite.date }}</td>
+                    <td>{{ actualite.description }}</td>
+                    <td>
+                        {% if actualite.photo %}
+                            <img src="{{ actualite.photo }}" class="admin-image">
+                        {% else %}
+                            Aucune
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="edit"
+                            onclick="ouvrirModification('{{ actualite.id }}','{{ actualite.titre }}','{{ actualite.date }}','{{ actualite.description }}','{{ actualite.photo }}')">
+                            Modifier
+                        </button>
+
+                        <form method="POST" action="{{ url_for('supprimer_actualite', id=actualite.id) }}" style="display:inline;">
+                            <button class="delete">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+</div>
+
+<!-- POPUP AJOUT -->
+<div id="modalAjout" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerAjout()">×</span>
+        <h2>Ajouter une actualité</h2>
+        <form method="POST" action="{{ url_for('ajouter_actualite') }}">
+            <input class="admin-input" name="titre" placeholder="Titre" required>
+            <input class="admin-input" name="date" type="date" required>
+            <textarea class="admin-input" name="description" placeholder="Description"></textarea>
+            <input class="admin-input" name="photo" placeholder="Lien de la photo">
+            <button class="admin-btn">Ajouter</button>
+        </form>
+    </div>
+</div>
+
+<!-- POPUP MODIFICATION -->
+<div id="modalModification" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerModification()">×</span>
+        <h2>Modifier une actualité</h2>
+        <form id="formModification" method="POST">
+            <input id="modTitre" class="admin-input" name="titre">
+            <input id="modDate" class="admin-input" name="date" type="date">
+            <textarea id="modDescription" class="admin-input" name="description"></textarea>
+            <input id="modPhoto" class="admin-input" name="photo">
+            <button class="admin-btn">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function ouvrirAjout() {
+    document.getElementById("modalAjout").style.display="flex";
+}
+function fermerAjout() {
+    document.getElementById("modalAjout").style.display="none";
+}
+function ouvrirModification(id,titre,date,description,photo) {
+    document.getElementById("modalModification").style.display="flex";
+    document.getElementById("modTitre").value=titre;
+    document.getElementById("modDate").value=date;
+    document.getElementById("modDescription").value=description;
+    document.getElementById("modPhoto").value=photo;
+    // Correction : on construit directement l’URL avec l’id
+    document.getElementById("formModification").action = "/admin/actualites/modifier/" + id;
+}
+function fermerModification() {
+    document.getElementById("modalModification").style.display="none";
+}
+</script>
+
+</body>
+</html>
