@@ -1,4 +1,0 @@
-{"sessionId":"e1e026","location":"completionProvider.ts:provideCompletionItems","message":"completion invoked","data":{"languageId":"sql","linePrefix":"pr","uri":"c:\\Users\\Administrator\\Desktop\\ufr-sta\\database"},"hypothesisId":"F","timestamp":1783448241640}
-{"sessionId":"e1e026","location":"atMentionChain.ts:getComplection","message":"mention parse","data":{"offset":4,"engine":null,"mention":null,"sqlTail":"\r\npr"},"hypothesisId":"D","timestamp":1783448241653}
-{"sessionId":"e1e026","location":"completionProvider.ts:provideCompletionItems","message":"completion invoked","data":{"languageId":"sql","linePrefix":"p","uri":"c:\\Users\\Administrator\\Desktop\\ufr-sta\\database"},"hypothesisId":"F","timestamp":1783448241787}
-{"sessionId":"e1e026","location":"atMentionChain.ts:getComplection","message":"mention parse","data":{"offset":3,"engine":null,"mention":null,"sqlTail":"\r\np"},"hypothesisId":"D","timestamp":1783448241794}
