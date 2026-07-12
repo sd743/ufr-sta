@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Formations</title>
+    <!-- Lien vers ton CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="admin-page">
+
+<header class="admin-navbar">
+    <h2>Administration</h2>
+    <div class="admin-user">Administrateur</div>
+</header>
+
+<div class="admin-layout">
+
+    <!-- MENU -->
+    <div class="admin-toggle" id="admin-toggle">☰</div>
+    <aside class="admin-sidebar">
+        <a href="{{ url_for('admin_dashboard') }}"><i class="fa fa-home"></i> Dashboard</a>
+        <a href="{{ url_for('gerer_actualites') }}" class="active">Actualités</a>
+        <a href="{{ url_for('gerer_activites') }}">Activités</a>
+        <a href="{{ url_for('gerer_formations') }}">Formations</a>
+        <a href="{{ url_for('gerer_photos') }}">Photos</a>
+        <button class="admin-logout">Déconnexion</button>
+    </aside>
+
+    <!-- CONTENU -->
+    <main class="admin-content">
+        <h1 class="admin-title">Gestion des formations</h1>
+
+        <section class="admin-table-box">
+            <button class="admin-btn" onclick="ouvrirAjout()">+ Ajouter une formation</button>
+
+            <h2>Liste des formations</h2>
+
+            <table>
+                <tr>
+                    <th>Niveau</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for formation in formations %}
+                <tr>
+                    <td>{{ formation.niveau }}</td>
+                    <td>{{ formation.nom }}</td>
+                    <td>{{ formation.description }}</td>
+                    <td>
+                        <button class="edit"
+                            onclick="ouvrirModification(
+                                '{{ formation.id }}',
+                                '{{ formation.niveau }}',
+                                '{{ formation.nom }}',
+                                '{{ formation.description}}'
+                            )">
+                            Modifier
+                        </button>
+
+                        <form method="POST" action="{{ url_for('supprimer_formation', id=formation.id) }}" style="display:inline;">
+                            <button class="delete">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+</div>
+
+<!-- POPUP AJOUT -->
+<div id="modalAjout" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerAjout()">×</span>
+        <h2>Ajouter une formation</h2>
+        <form method="POST" action="{{ url_for('ajouter_formation') }}">
+            <input class="admin-input" name="niveau" placeholder="Niveau" required>
+            <input class="admin-input" name="nom" required>
+            <textarea class="admin-input" name="description" placeholder="Description"></textarea>
+            <button class="admin-btn">Ajouter</button>
+        </form>
+    </div>
+</div>
+
+<!-- POPUP MODIFICATION -->
+<div id="modalModification" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fermerModification()">×</span>
+        <h2>Modifier une formation</h2>
+        <form id="formModification" method="POST">
+            <input id="modNiveau" class="admin-input" name="niveau">
+            <input id="modNom" class="admin-input" name="nom">
+            <textarea id="modDescription" class="admin-input" name="description"></textarea>
+            <button class="admin-btn">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function ouvrirAjout() {
+    document.getElementById("modalAjout").style.display="flex";
+}
+function fermerAjout() {
+    document.getElementById("modalAjout").style.display="none";
+}
+function ouvrirModification(id, niveau, nom, description) {
+    document.getElementById("modalModification").style.display="flex";
+    document.getElementById("modNiveau").value=niveau;
+    document.getElementById("modNom").value=nom;
+    document.getElementById("modDescription").value=debscription;
+    document.getElementById("formModification").action = "/admin/modifier_formation/" + id;
+}
+function fermerModification() {
+    document.getElementById("modalModification").style.display="none";
+}
+</script>
+
+<script>
+    const adminToggle = document.getElementById("admin-toggle");
+    const admin = document.getElementById("admin-sidebar");
+
+    adminToggle.addEventListener("click", () => {
+    admin.classList.toggle("active");
+    });
+</script>
+</body>
+</html>
