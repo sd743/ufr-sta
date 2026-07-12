@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Actualités</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="admin-page">
+    <header class="admin-navbar">
+        <h2>Administration</h2>
+        <div class="admin-user">
+            Administrateur
+        </div>
+    </header>
+    
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <a href="dashboard.html"><i class="fa fa-home"></i>Dashboard</a>
+            <a href="gerer_formations.html"><i class="fa fa-graduation-cap"></i> Formations</a>
+            <a href="gerer_actualites.html"><i class="fa fa-newspaper"></i> Actualités</a>
+            <a href="gerer_activites.html"><i class="fa fa-calendar"></i> Activités</a>
+            <a href="gerer_photos.html"><i class="fa fa-image"></i> Galerie</a>
+        </aside>
+
+        <main class="admin-content">
+            <h1 class="admin-title">Gestion des actualités</h1>
+            <section class="admin-table-box">
+                <button class="admin-btn" onclick="ouvrirAjout()">+ Ajouter une actualité</button>
+                <h2>Liste des actualités</h2>
+                <table>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date</th>   
+                        <th>Description</th>  
+                        <th>Photo</th> 
+                        <th>Actions</th>
+                    </tr>
+                    <td>Journée d'Excellence</td>
+                    <td></td>9 Mai 2026></td>
+                    <td>L'amicale des etudiants de l'UFR STA a organisé une grande 
+                journée d'Excellence dédiée a la celebration du merite academique.</td>
+                <td></td>
+                <img src="{{ actualite.photo }}" class="admin-image">
+                <button class="edit"
+                onclick="ouvrirModification(
+                '{{ actualite.id }}',
+                '{{ actualite.titre }}',
+                '{{ actualite.date }}',
+                '{{ actualite.description }}',
+                '{{ actualite.photo }}'
+                )">Modifier</button>
+                <form method="POST"
+                action="{{url_for('ajouter_actualite')}}" style="display:inline;">
+                <button class="delete">       
+                Supprimer  
+                </button>
+                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+
+</section>
+
+
+
+</main>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- =========================
+     POPUP AJOUT
+========================= -->
+
+
+<div id="modalAjout" class="modal">
+
+
+<div class="modal-content">
+
+
+<span class="close" onclick="fermerAjout()">
+×
+</span>
+
+
+
+<h2>
+Ajouter une actualité
+</h2>
+
+
+
+<form method="POST"
+action="/admin/actualites/ajouter">
+
+
+<input class="admin-input"
+name="titre"
+placeholder="Titre"
+required>
+
+
+
+<input class="admin-input"
+name="date"
+type="date"
+required>
+
+
+
+<textarea class="admin-input"
+name="description"
+placeholder="Description"></textarea>
+
+
+
+<input class="admin-input"
+name="photo"
+placeholder="Lien de la photo">
+
+
+
+<button class="admin-btn">
+
+Ajouter
+
+</button>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- =========================
+     POPUP MODIFICATION
+========================= -->
+
+
+<div id="modalModification" class="modal">
+
+
+<div class="modal-content">
+
+
+<span class="close" onclick="fermerModification()">
+
+×
+
+
+</span>
+
+
+
+
+<h2>
+Modifier une actualité
+</h2>
+
+
+
+
+<form id="formModification"
+method="POST">
+
+
+
+<input id="modTitre"
+class="admin-input"
+name="titre">
+
+
+
+<input id="modDate"
+class="admin-input"
+name="date"
+type="date">
+
+
+
+<textarea id="modDescription"
+class="admin-input"
+name="description">
+</textarea>
+
+
+
+<input id="modPhoto"
+class="admin-input"
+name="photo">
+
+
+
+<button class="admin-btn">
+
+Enregistrer
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+function ouvrirAjout(){
+
+document.getElementById("modalAjout").style.display="flex";
+
+}
+
+
+
+function fermerAjout(){
+
+document.getElementById("modalAjout").style.display="none";
+
+}
+
+
+
+
+
+function ouvrirModification(id,titre,date,description,photo){
+
+
+document.getElementById("modalModification").style.display="flex";
+
+
+document.getElementById("modTitre").value=titre;
+
+document.getElementById("modDate").value=date;
+
+document.getElementById("modDescription").value=description;
+
+document.getElementById("modPhoto").value=photo;
+
+
+
+document.getElementById("formModification").action =
+"/admin/actualites/modifier/"+id;
+
+
+}
+
+
+
+
+function fermerModification(){
+
+document.getElementById("modalModification").style.display="none";
+
+}
+
+
+
+</script>
+
+
+
+
+</body>
+
+</html>
