@@ -17,12 +17,14 @@
         </div>
     </header>
     <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <a class="active"><i class="fa fa-home"></i> Dashboard</a>
-            <a href="gerer_formations.html"><i class="fa fa-graduation-cap"></i> Formations</a>
-            <a href="gerer_actualites.html"><i class="fa fa-newspaper"></i> Actualités</a>
-            <a href="gerer_activites.html"><i class="fa fa-calendar"></i> Activités</a>
-            <a href="gerer_photos.html"><i class="fa fa-image"></i> Galerie</a>
+        <div class="admin-toggle" id="admin-toggle">☰</div>
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('gerer_actualites') }}">Actualités</a>
+            <a href="{{ url_for('gerer_activites') }}">Activités</a>
+            <a href="{{ url_for('gerer_formations') }}">Formations</a>
+            <a href="{{ url_for('gerer_photos') }}" class="active">Galerie</a>
+            
             <button class="admin-logout">
                 <a href="login.html">
                 <i class="fa fa-right-from-bracket"></i>
@@ -42,34 +44,43 @@
     
             <div class="admin-cards">
                 <div class="admin-card">
-                <i class="fa fa-graduation-cap"></i>
-                <h3>Formations</h3>
-                <strong>5</strong>
-                <a href="gerer_formations.html">Gerer →</a>
+                    <i class="fa fa-graduation-cap"></i>
+                    <h3>Formations</h3>
+                    <strong>6</strong>
+                    <a href="gerer_formations.html">Gerer →</a>
                 </div>
     
                 <div class="admin-card">
-                <i class="fa fa-newspaper"></i>
-                <h3>Actualités</h3>
-                <strong>10</strong>
-                <a href="gerer_actualites.html">Gerer →</a>
+                    <i class="fa fa-newspaper"></i>
+                    <h3>Actualités</h3>
+                    <strong>4</strong>
+                    <a href="gerer_actualites.html">Gerer →</a>
                 </div>
     
-                <div class="admin-card"></div>
-                <i class="fa fa-calendar"></i>
-                <h3>Activités</h3>
-                <strong>8</strong>
-                <a href="gerer_activites.html">Gerer →</a>
+                <div class="admin-card">
+                    <i class="fa fa-calendar"></i>
+                    <h3>Activités</h3>
+                    <strong>8</strong>
+                    <a href="gerer_activites.html">Gerer →</a>   
                 </div>
                 
                 <div class="admin-card">
-                <i class="fa-solid fa-images"></i>
-                <h3>Photos</h3>
-                <strong>8</strong>
-                <a href="gerer_photos.html">Gerer →</a>
+                    <i class="fa-solid fa-images"></i>
+                    <h3>Photos</h3>
+                    <strong>8</strong>
+                    <a href="gerer_photos.html">Gerer →</a>   
                 </div>
             </div>
         </main>
     </div>
+
+    <script>
+        const adminToggle = document.getElementById("admin-toggle");
+        const admin = document.getElementById("admin-sidebar");
+        
+        adminToggle.addEventListener("click", () => {
+        admin.classList.toggle("active");
+        });
+    </script>
 </body>
 </html>
